@@ -1,3 +1,15 @@
+# v0.0.2 (Wed Nov 23 2022)
+
+#### ⚠️ Pushed to `main`
+
+- always run in devmode locally with autoreload app & templates ([@chrisjsimpson](https://github.com/chrisjsimpson))
+
+#### Authors: 1
+
+- [@chrisjsimpson](https://github.com/chrisjsimpson)
+
+---
+
 # v0.0.1 (Wed Nov 23 2022)
 
 :tada: This release contains work from a new contributor! :tada:
