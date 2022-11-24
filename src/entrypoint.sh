@@ -1,7 +1,11 @@
 #!/bin/sh
-set -ex
+set -exu
 
-if [ "$LOCAL_DEVELOPMENT_MODE" == "on" ]; then
+eval $(ssh-agent)
+ssh-add ~/.ssh/id_rsa_storage
+ssh-add -l
+
+if [ "$LOCAL_DEVELOPMENT_MODE" = "on" ]; then
   # Start flask in development mode
   FLASK_DEBUG=1 TEMPLATES_AUTO_RELOAD=True flask run --host 0.0.0.0 --port 5000
 else
