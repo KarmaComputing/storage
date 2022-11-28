@@ -38,7 +38,7 @@ dokku ps:restart APP_NAME
 
 Debug mode must also be set
 ```
-dokku config:set APP_NAME LOCAL_DEVELOPMENT_MODE=off
+dokku config:set APP_NAME LOCAL_DEVELOPMENT_MODE=off STORAGE_HOST=10.0.0.1 CEPH_FILESYSTEM_NAME=ceph-filesystem-name
 ```
 
 

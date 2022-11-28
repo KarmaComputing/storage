@@ -8,5 +8,18 @@
 
 {% block content %}
     <h1>Here is your storage</h1>
+    Follow instructions below to mount your storage
+    <h2>How to mount</h2>
+    <pre>
+    apt-get install cifs-utils
+
+    mkdir /mnt/mystorage
+
+    # Create your keyring file
+    cat << EOF >> /etc/ceph/ceph.client.$USERNAME.keyring
     {{ credentials }}
+    EOF
+
+    mount -t ceph $CEPH_MON_IP:/$USERNAME /mnt/mystorage -o name=$USERNAME,secret=$SECRET
+    </pre>
 {% endblock %}
