@@ -11,3 +11,6 @@ services:
       - type: bind
         source: ./src/web
         target: /usr/src/app
+      - type: bind
+        source: ./keys
+        target: /root/.ssh
