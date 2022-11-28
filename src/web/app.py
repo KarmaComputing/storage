@@ -26,14 +26,20 @@ def get_storage_credentials():
     command = f"ceph fs authorize {CEPH_FILESYSTEM_NAME} client.{client_name} /{client_name} rw"  # noqa: E501
     stdin, stdout, stderr = ssh_client.exec_command(command)
     result = stdout.read().decode("utf-8")
-    return result
+    return client_name, result
 
 
 @app.route("/", methods=["GET", "POST"])
 def index():
     if request.method == "POST":
-        credentials = get_storage_credentials()
-        return render_template("complete.html", credentials=credentials)
+        client_name, credentials = get_storage_credentials()
+        ceph_secret = credentials.split("key = ")[-1].strip()
+        return render_template(
+            "complete.html",
+            client_name=client_name,
+            credentials=credentials,
+            ceph_secret=ceph_secret,
+        )
     return render_template("index.html")
 
 

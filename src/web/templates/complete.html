@@ -11,15 +11,19 @@
     Follow instructions below to mount your storage
     <h2>How to mount</h2>
     <pre>
+    sudo -i
     apt-get install cifs-utils
 
     mkdir /mnt/mystorage
 
     # Create your keyring file
-    cat << EOF >> /etc/ceph/ceph.client.$USERNAME.keyring
-    {{ credentials }}
-    EOF
+    echo "{{ credentials }}" &gt; /etc/ceph/ceph.client.{{ client_name }}.keyring
 
-    mount -t ceph $CEPH_MON_IP:/$USERNAME /mnt/mystorage -o name=$USERNAME,secret=$SECRET
+    mount -t ceph $CEPH_MON_IP:/{{ client_name }} /mnt/mystorage -o name={{ client_name }},secret={{ ceph_secret }}
+    </pre>
+
+    <h2>How to unmount</h2>
+    <pre>
+    umount /mnt/mystorage
     </pre>
 {% endblock %}
